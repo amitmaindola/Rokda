@@ -2,19 +2,13 @@ editIcon = "cursor-pointer	fa-solid fa-pen-to-square";
 saveIcon = "cursor-pointer	fa-solid fa-check";
 
 var editMode = false;
-var deadline = document.getElementById("deadline-edit");
 
 var editList = document.querySelectorAll(".editContent");
 var tillNow = document.querySelectorAll(".till-now");
 
 
 var a = [5000, 5000, 5000];
-if(!localStorage.deadlines)localStorage.setItem("deadlines", a)
 
-var a=localStorage.getItem("deadlines").split(",");
-for (let index = 0; index < editList.length; index++) {
-    editList[index].innerHTML=a[index];
-}
 
 const check = ()=>{
     for (let index = 0; index < editList.length; index++) {
@@ -30,43 +24,6 @@ const check = ()=>{
 }
 
 check();
-
-function deadlineEdit(){
-    if(editMode){ // ab save karna he
-        deadline.classList=editIcon;
-        editMode=false;
-
-        editList.forEach(element => {
-            element.style.color="black";
-            element.contentEditable = false;
-            element.style.border = "5px double black";
-        });
-
-        for (let index = 0; index < editList.length; index++) {
-            a[index] = editList[index].innerHTML;
-            localStorage.setItem("deadlines", a)
-        }
-
-
-    }
-    else{ // ab edit karna he
-        deadline.classList=saveIcon;
-        editMode=true;
-
-        editList.forEach(element => {
-            element.style.color="blue";
-            element.contentEditable = true;
-            element.style.border = "0.5px solid blue"
-        });
-        
-    }
-    check();
-}
-
-
-deadline.addEventListener('click', ()=>{
-    deadlineEdit();
-})
 
 
 
